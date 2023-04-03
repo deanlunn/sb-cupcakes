@@ -2,9 +2,10 @@
 
 from flask import Flask, request, jsonify, render_template
 
-from models import db, connect_db, Cupcake
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
