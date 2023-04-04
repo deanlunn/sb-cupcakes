@@ -1,17 +1,20 @@
 """Flask app for Cupcakes"""
 
 from flask import Flask, request, jsonify, render_template
-
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+from models import db, connect_db, Cupcake
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5000/"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 app.config['SECRET_KEY'] = "secret"
 
-connect_db(app)
+with app.app_context():
+    connect_db(app)
+    db.create_all()
 
 
 @app.route("/")

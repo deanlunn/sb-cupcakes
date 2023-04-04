@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-DEFAULT_IMAGE = "https://sallysbakingaddiction.com/wp-content/uploads/2017/06/moist-chocolate-cupcakes-5.jpg"
+DEFAULT_IMAGE = "https://tinyurl.com/demo-cupcake"
 
 class Cupcake(db.Model):
     """Cupcake"""
